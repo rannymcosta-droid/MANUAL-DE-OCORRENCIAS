@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocorrências na Rota</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0eeea;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 16px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px 16px 22px;
+    border: 1px solid #ddd;
+  }
+
+  .header {
+    background: #F5C518;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 12px;
+  }
+  .header-title { font-size: 18px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; }
+  .header-sub { font-size: 12px; color: #333; margin-top: 2px; font-weight: 500; }
+
+  .alerta-box {
+    background: #fffbec;
+    border: 1px solid #e8d88a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #7a6200;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .alerta-box p { margin: 0; }
+  .alerta-box strong { font-weight: 600; }
+  .alerta-box .divider {
+    border: none;
+    border-top: 1px solid #e8d88a;
+    margin: 2px 0;
+  }
+
+  .section-label {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    text-transform: uppercase;
+    margin: 12px 0 5px;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 5px; }
+
+  .card {
+    border: 1px solid #e8e5dd;
+    border-radius: 8px;
+    padding: 9px 11px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: #fafaf8;
+  }
+  .card.danger  { border-color: #f5c1c1; background: #fff8f8; }
+  .card.restrict{ border-color: #e0ddd6; background: #f5f4f0; }
+
+  .dot {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+  .dot.blue  { background: #e6f1fb; }
+  .dot.slate { background: #eeede8; }
+  .dot.red   { background: #fce8e8; }
+  .dot.muted { background: #f0efea; }
+
+  .card-content { flex: 1; min-width: 0; }
+  .card-title { font-size: 12.5px; font-weight: 600; color: #1a1a1a; line-height: 1.3; }
+  .card-desc  { font-size: 11px; color: #666; line-height: 1.5; margin-top: 3px; }
+  .card-ev {
+    font-size: 10.5px; color: #999;
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid #e8e5dd;
+    display: flex; gap: 5px; align-items: flex-start;
+    line-height: 1.45;
+  }
+  .card.danger .card-ev { border-top-color: #f5c1c1; }
+
+  .footer {
+    margin-top: 14px;
+    border-top: 1px solid #e8e5dd;
+    padding-top: 9px;
+    font-size: 10px;
+    color: #ccc;
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { border: none; border-radius: 0; width: 100%; max-width: 100%; padding: 16px; }
+    @page { margin: 1cm; size: A4 portrait; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-title">Ocorrências na rota</div>
+    <div class="header-sub">Como lançar e quando usar</div>
+  </div>
+
+  <div class="alerta-box">
+    <p><strong>Avise sempre o monitor antes e logo após o lançamento.</strong> Aguarde 15 min para tratativa. Lançamento errado? Comunique para corrigir. Toda ocorrência exige evidência (foto ou vídeo).</p>
+    <hr class="divider">
+    <p>⚠️ Lançar ocorrência no local do ponto indicado.</p>
+  </div>
+
+  <div class="section-label">Endereço e local</div>
+  <div class="cards">
+    <div class="card">
+      <div class="dot blue">📍</div>
+      <div class="card-content">
+        <div class="card-title">Endereço incorreto</div>
+        <div class="card-desc">Número não existe ou o ponto mudou de localização.</div>
+        <div class="card-ev">🎥 Filmagem breve do local, enviar ao monitor logo após lançar.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="dot blue">🚧</div>
+      <div class="card-content">
+        <div class="card-title">Endereço em área inacessível</div>
+        <div class="card-desc">Sem local para estacionar. Ajudante vai ao ponto e verifica se responsável pode retirar algum veículo. Se não houver solução, lançar e aguardar 15 min.</div>
+        <div class="card-ev">🎥 Filmagem breve dos arredores, enviar ao monitor.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="dot blue">🔒</div>
+      <div class="card-content">
+        <div class="card-title">Local fechado</div>
+        <div class="card-desc">Ponto fechado no momento da visita.</div>
+        <div class="card-ev">📷 Foto do endereço ao monitor.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="dot blue">🔑</div>
+      <div class="card-content">
+        <div class="card-title">Vendedor sem código de autorização</div>
+        <div class="card-desc">Responsável sem acesso ao código de finalização da coleta.</div>
+        <div class="card-ev">💬 Avisar monitor previamente para confirmar antes de lançar.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Pacotes</div>
+  <div class="cards">
+    <div class="card">
+      <div class="dot slate">📦</div>
+      <div class="card-content">
+        <div class="card-title">Pacotes não cabem no veículo</div>
+        <div class="card-desc">Peso ou cubagem no limite. Avisar o monitor antes de finalizar a coleta, ao identificar o estouro.</div>
+        <div class="card-ev">📷 Foto do baú. Se estouro de peso: também foto do eixo do veículo.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="dot slate">🫙</div>
+      <div class="card-content">
+        <div class="card-title">Pacotes frágeis</div>
+        <div class="card-desc">Vidros, garrafas ou produtos sensíveis que impedem a ocupação total do baú.</div>
+        <div class="card-ev">📷 Vídeo breve dos pacotes + foto do baú ao monitor.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Emergências</div>
+  <div class="cards">
+    <div class="card danger">
+      <div class="dot red">🚑</div>
+      <div class="card-content">
+        <div class="card-title">Não posso continuar dirigindo</div>
+        <div class="card-desc">Mal-estar em rota ou imprevisto que impossibilita finalizar as coletas.</div>
+      </div>
+    </div>
+    <div class="card danger">
+      <div class="dot red">🔧</div>
+      <div class="card-content">
+        <div class="card-title">Imprevisto mecânico</div>
+        <div class="card-desc">Quebra do veículo em rota, ou sob orientação pontual do monitor.</div>
+      </div>
+    </div>
+    <div class="card danger">
+      <div class="dot red">⚠️</div>
+      <div class="card-content">
+        <div class="card-title">Pacotes roubados</div>
+        <div class="card-desc">Comunicar o monitor imediatamente, antes de lançar. Informar bem-estar do motorista e ajudante.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Uso restrito — somente com orientação</div>
+  <div class="cards">
+    <div class="card restrict">
+      <div class="dot muted">🗺️</div>
+      <div class="card-content">
+        <div class="card-title">Não passei no endereço</div>
+        <div class="card-desc">Somente em caso de alinhamento com o time operacional.</div>
+      </div>
+    </div>
+    <div class="card restrict">
+      <div class="dot muted">⋯</div>
+      <div class="card-content">
+        <div class="card-title">Ocorrência na rota completa</div>
+        <div class="card-desc">Pelos 3 pontinhos no canto superior direito. Somente após orientação do monitor.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Operações de Coleta · Guia de Ocorrências</div>
+</div>
+</body>
+</html>
